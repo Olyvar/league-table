@@ -41,6 +41,10 @@ var leagueTableArr = [
 	}
 ];
 
+var button = document.querySelector(".js-btn"),
+	tableContainer = document.querySelector(".premTable");
+
+// sort descending function
 var sortDesc = function (a, b) {
   if (a.points < b.points) {
     return 1;
@@ -48,10 +52,10 @@ var sortDesc = function (a, b) {
   if (a.points > b.points) {
     return -1;
   }
-  // a must be equal to b
   return 0;
 }
 
+// sort ascending function
 var sortAsc = function (a, b) {
   if (a.points > b.points) {
     return 1;
@@ -59,56 +63,48 @@ var sortAsc = function (a, b) {
   if (a.points < b.points) {
     return -1;
   }
-  // a must be equal to b
   return 0;
 }
 
-var premTable = document.querySelector(".premTable"),
-	table = document.createElement("table"),
-	thTeam = document.createElement("th"),
-	thPoints = document.createElement("th"),
-	button = document.querySelector(".js-btn");
-	premTable.appendChild(table);
-	table.appendChild(thTeam).innerHTML = "Team";
-	table.appendChild(thPoints).innerHTML = "Points";
 
-
-leagueTableArr.forEach(function(val,key,arr){
-arr[key].points += (Math.floor((Math.random() * 3) * 20));
-});
-
-leagueTableArr.sort(sortDesc)
-
-console.log(leagueTableArr);
 
 button.addEventListener("click", function(){
 
-table.remove();
-var newtable = document.createElement("table"),
-	thTeam = document.createElement("th"),
-	thPoints = document.createElement("th"),
-	numbers = [],
-	button = document.querySelector(".js-btn");
-	premTable.appendChild(newtable);
-	newtable.appendChild(thTeam).innerHTML = "Team";
-	newtable.appendChild(thPoints).innerHTML = "Points";
+	leagueTableArr.forEach(function(val,key,arr){
+		arr[key].points = 0;
+		arr[key].points += ( Math.floor((Math.random() * 3) * 20) );
+	});
 
-// for(i = 0; i < teams.length; i++){
-// 	var tr = document.createElement("tr"),
-// 		tdTeam = document.createElement("td"),
-// 		tdPoints = document.createElement("td"),
-// 		randomNumber = Math.floor(Math.random() * teams.length);
+	leagueTableArr.sort(sortDesc);
+
+	var existingTable = document.getElementsByTagName("table")[0];
+
+	if(tableContainer.contains( existingTable ) ){
+		existingTable.remove();
+	}
+
+	var table = document.createElement("table");
 		
+	tableContainer.appendChild(table);
 
-// 		numbers.push(randomNumber);
-// 		if(numbers[i-1] === randomNumber){
-// 			randomNumber = Math.floor(Math.random() * teams.length);
-// 		}
+	var tableHtml = "";
+		
+	leagueTableArr.map(function(item, index, array){
+		tableHtml += "<tr>";
+		tableHtml += "<td>" + item.team + "</td>" + "<td>" + item.points + "</td>";
+		tableHtml += "</tr>";
+	});
 
-// 	newtable.appendChild(tr);
-// 	tr.appendChild(tdTeam).innerHTML = teams[i];
-// 	tr.appendChild(tdPoints).innerHTML = randomNumber;
-// }
+	table.innerHTML = tableHtml;
+
+	var theFirstChild = table.firstChild,
+		thTeam = document.createElement("th"),
+		thPoints = document.createElement("th");
+
+	table.insertBefore(thTeam, theFirstChild).innerHTML = "Teams";
+	table.insertBefore(thPoints, theFirstChild).innerHTML = "Points";
 
 });
+
+
 
