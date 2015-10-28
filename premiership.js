@@ -46,24 +46,12 @@ var button = document.querySelector(".js-btn"),
 
 // sort descending function
 var sortDesc = function (a, b) {
-  if (a.points < b.points) {
-    return 1;
-  }
-  if (a.points > b.points) {
-    return -1;
-  }
-  return 0;
+  return b.points - a.points;
 }
 
 // sort ascending function
 var sortAsc = function (a, b) {
-  if (a.points > b.points) {
-    return 1;
-  }
-  if (a.points < b.points) {
-    return -1;
-  }
-  return 0;
+  return a.points - b.points;
 }
 
 
