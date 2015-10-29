@@ -60,7 +60,16 @@ button.addEventListener("click", function(){
 
 	leagueTableArr.forEach(function(val,key,arr){
 		arr[key].points = 0;
-		arr[key].points += ( Math.floor((Math.random() * 3) * 20) );
+		
+		(function simulateGames(count){
+			arr[key].points += Math.floor(Math.random() * 5);
+			console.log(arr[key].points);
+			if(count == 0){
+				return;
+			}
+			simulateGames(count - 1);
+		}(20));
+
 	});
 
 	leagueTableArr.sort(sortDesc);
