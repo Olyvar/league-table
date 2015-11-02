@@ -56,7 +56,7 @@ var sortAsc = function (a, b) {
 
 button.addEventListener("click", function(){
 
-//---------------------  Simulating 20 Games of Football for each team, and assigning points based on random possibilites -------------//
+//---------------------  Simulating 20 Games of Football for each team, and assigning points based on random possibilites ---------------------//
 
 // ForEach loop that loops over every object in the array
 	leagueTableArr.forEach(function(val,index,arr){
@@ -83,7 +83,7 @@ button.addEventListener("click", function(){
 
 
 
-	//************ Assembling the HTML table ***************//
+	//--------------------- Assembling the HTML table ---------------------//
 
 	// div that will contain the league table
 	var tableContainer = document.querySelector(".premTable");
